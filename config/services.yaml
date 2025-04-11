@@ -1,0 +1,9 @@
+services:
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entities}'
+    App\Listeners\SessionCleanupListener:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
