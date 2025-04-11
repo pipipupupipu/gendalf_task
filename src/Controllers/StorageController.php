@@ -109,7 +109,9 @@ class StorageController
             
             return $response;
         } catch (\RuntimeException $e) {
-            return $this->responseService->createErrorResponse($e->getMessage(), $e->getCode());
+            $errorMessage = str_replace($this->basePath, "", $e->getMessage());
+            
+            return $this->responseService->createErrorResponse($errorMessage, $e->getCode());
         } catch (\TypeError $e) {
             return $this->responseService->createErrorResponse('Ошибка параметров запроса', 400);
         }

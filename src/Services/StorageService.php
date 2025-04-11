@@ -70,7 +70,7 @@ class StorageService
     public function getFileData(string $path): array
     {
         if (!is_file($path)) {
-            throw new \RuntimeException("Файл не найден", 404);
+            throw new \RuntimeException("Файл не найден: $path", 404);
         }
 
         $mimeType = mime_content_type($path) ?: 'application/octet-stream';
@@ -103,7 +103,7 @@ class StorageService
         try {
             $file->moveTo($path);
         } catch (\Throwable $e) {
-            throw new \RuntimeException('Ошибка при загрузке файла', 400);
+            throw new \RuntimeException('Ошибка при загрузке файла: ' . $e->getMessage(), 400);
         }
         
         return true;
@@ -135,7 +135,7 @@ class StorageService
     public function rm(string $path): bool
     {
         if (!file_exists($path)) {
-            throw new RuntimeException("Файл или директория не найдены", 404);
+            throw new RuntimeException("Файл или директория не найдены: $path", 404);
         }
         if (is_dir($path)) {
             return $this->deleteDirectory($path);
