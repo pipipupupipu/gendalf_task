@@ -45,7 +45,7 @@ services:
       app-network:
         ipv4_address: 172.20.0.4
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root"]
       interval: 5s
       timeout: 5s
       retries: 10
