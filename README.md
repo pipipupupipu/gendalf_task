@@ -10,7 +10,7 @@
    
 Контейнеры запустятся, и приложение будет доступно по адресу localhost:8080.
 
-Пользователя можно добавить с помощью docker-compose exec app_php php scripts/add_user.php <логин> <пароль>
+Пользователя можно добавить с помощью docker exec app_php php scripts/add_user.php <логин> <пароль>
    
 ## API
 
